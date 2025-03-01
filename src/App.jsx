@@ -11,6 +11,7 @@ const App = () => {
         <Route path="/auth" element={<Auth />} />
         
       </Routes>
+      <h1>helo</h1>
     </div>
   );
 }
