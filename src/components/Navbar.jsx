@@ -1,3 +1,4 @@
+import assets from "@/assets/assest";
 import UserContext from "@/contexts/UserContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -47,12 +48,23 @@ const Navbar = ({ scrollToFeature }) => {
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-between items-center bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-700 h-[70px] px-4 md:px-10 z-50 font-[Audiowide] text-white shadow-lg">
       <div className="flex items-center">
+        <img
+          src={assets.logo}
+          alt="logo"
+          className="w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full object-cover mr-2"
+        />
         <h1 className="text-base md:text-lg font-bold">MOCKMATE AI</h1>
       </div>
       <div className="hidden md:flex gap-2">
         <button
           className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
-          onClick={() => navigate("/about")}
+          onClick={(e) => {
+            e.preventDefault();
+            const aboutSection = document.getElementById("about");
+            if (aboutSection) {
+              aboutSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
         >
           <span className="mr-2">⚙️</span> About
         </button>
@@ -63,7 +75,10 @@ const Navbar = ({ scrollToFeature }) => {
           className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
           onClick={(e) => {
             e.preventDefault();
-            scrollToFeature();
+            const featuresSection = document.getElementById("features");
+            if (featuresSection) {
+              featuresSection.scrollIntoView({ behavior: "smooth" });
+            }
           }}
         >
           <span className="mr-2">📌</span> Features
