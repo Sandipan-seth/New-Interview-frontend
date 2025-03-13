@@ -5,6 +5,11 @@ import Background from "@/components/ParticleBackground/Background";
 import { Particles } from "@/components/ui/particles";
 
 const Home = () => {
+  const scrollToFeature = () => {
+    if (featureRef.current) {
+      featureRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="bg-black text-gray-300 w-screen min-h-fit flex flex-col font-poppins">
@@ -15,7 +20,7 @@ const Home = () => {
         color="#ffffff"
         refresh
       /> */}
-      <Navbar />
+      <Navbar scrollToFeature={scrollToFeature} />
       <Background />
       <Footer />
     </div>

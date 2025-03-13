@@ -1,16 +1,28 @@
+import UserContext from "@/contexts/UserContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../contexts/UserContext";
 
-const Navbar = () => {
+const Navbar = ({ scrollToFeature }) => {
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null);
   const { auth, setAuth } = useContext(UserContext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const [user, setUser] = useState(() => {
-    return JSON.parse(localStorage.getItem("user")) || null;
-  });
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, [localStorage.getItem("token")]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setCurrentUser(user);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,18 +45,42 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed z-50 top-0 right-0 w-full bg-black/30 backdrop-blur-lg shadow-lg px-5 py-3 flex justify-between items-center">
-      {/* Logo */}
-      <div className="text-xl font-bold text-white">Mockmate AI</div>
+    <nav className="fixed top-0 left-0 w-full flex justify-between items-center bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-700 h-[70px] px-4 md:px-10 z-50 font-[Audiowide] text-white shadow-lg">
+      <div className="flex items-center">
+        <h1 className="text-base md:text-lg font-bold">MOCKMATE AI</h1>
+      </div>
+      <div className="hidden md:flex gap-2">
+        <button
+          className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
+          onClick={() => navigate("/about")}
+        >
+          <span className="mr-2">⚙️</span> About
+        </button>
+        <button className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700">
+          <span className="mr-2">💬</span> Docs
+        </button>
+        <button
+          className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToFeature();
+          }}
+        >
+          <span className="mr-2">📌</span> Features
+        </button>
+        <button className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700">
+          <span className="mr-2">📄</span> Contact
+        </button>
+      </div>
 
-      {/* Buttons */}
-      {user ? (
+      {/* avatar or login sign in */}
+      {token ? (
         <div className="relative" ref={dropdownRef}>
           <div
             className="h-12 w-12 cursor-pointer transition-all duration-200 active:scale-95"
             onClick={() => setDropdownOpen(!isDropdownOpen)}
           >
-            <img className="h-full w-full" src={user?.avatar} alt="" />
+            <img className="h-full w-full" src={currentUser?.avatar} alt="" />
           </div>
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg overflow-hidden transition-all duration-300">
@@ -92,7 +128,7 @@ const Navbar = () => {
           </button>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 
