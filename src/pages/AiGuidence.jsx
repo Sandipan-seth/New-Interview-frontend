@@ -51,13 +51,13 @@ function AiGuidance() {
 
   return (
     <div className="min-h-screen bg-black text-white p-6 flex flex-col items-center">
-      <Particles
+      {/* <Particles
         className="absolute max-h-screen inset-2"
         quantity={100}
         ease={80}
         color="#ffffff"
         refresh
-      />
+      /> */}
       <div className="fixed top-5 left-5 border border-white rounded-full p-3 hover:bg-white hover:text-black transition-all duration-200 cursor-pointer">
         <ArrowLeft className="w-6 h-6" onClick={() => window.history.back()} />
       </div>

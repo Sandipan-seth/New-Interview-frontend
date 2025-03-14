@@ -84,13 +84,13 @@ const Auth = () => {
 
   return (
     <div className="bg-black text-gray-300 w-screen h-screen flex flex-col justify-center items-center px-4">
-      <Particles
+      {/* <Particles
         className="absolute inset-0"
         quantity={100}
         ease={80}
         color="#ffffff"
         refresh
-      />
+      /> */}
       <button
         onClick={() => navigate("/")}
         className="absolute top-10 right-10  p-2 rounded-full transition duration-300"

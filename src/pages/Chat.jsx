@@ -12,89 +12,100 @@ const Chat1 = () => {
   const { course, setCourse, level, setLevel, questions, setQuestions } =
     useContext(UserContext);
 
+  const [jobRole, setJobRole] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [experience, setExperience] = useState(0);
+
   const { isPending, isSuccess, error, mutateAsync } = useInterview();
   async function handleclick() {
     const data = await mutateAsync({
       topic: course,
-      experience: level
+      experience: level,
     });
-    console.log(data?.data)
+    console.log(data?.data);
     setQuestions(data?.data);
     navigate(`/InterView/${course}/${level}`);
   }
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center relative">
-      {/* Particle Effect */}
-      <Particles
-        className="absolute inset-0"
-        quantity={100}
-        ease={80}
-        color="#ffffff"
-        refresh
-      />
-
-
       {/* Header */}
       <div className="fixed top-5 left-5 border border-white rounded-full p-3 hover:bg-white hover:text-black transition-all duration-200 cursor-pointer">
         <ArrowLeft className="w-6 h-6" onClick={() => window.history.back()} />
       </div>
 
       {/* Course Selection Section */}
-      <div className="flex justify-center items-center w-full h-screen px-6">
-        <div className="flex flex-col items-center gap-6 bg-gray-900/70 p-8 rounded-2xl shadow-lg max-w-lg w-full">
-          <h2 className="text-2xl md:text-3xl font-bold">Select Your Course</h2>
+      <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md z-50 p-4">
+        <div className="bg-gray-900 text-white w-full max-w-lg p-6 rounded-lg shadow-lg relative">
+          {/* Close Button */}
+          <button
+            className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white text-xl rounded-md transition"
+            onClick={() => navigate("/features")}
+          >
+            &times;
+          </button>
 
-          <div className="flex flex-col md:flex-row items-center gap-6 w-full">
-            {/* Course Dropdown */}
-            <div className="flex flex-col items-start w-full">
-              <label htmlFor="course" className="text-sm text-gray-400 mb-1">
-                Choose a Course
-              </label>
-              <select
-                id="course"
-                className="bg-gray-800 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer w-full"
-                value={course}
-                onChange={(e) => setCourse(e.target.value)}
-              >
-                <option value="Data Science">Data Science</option>
-                <option value="AI">AI</option>
-                <option value="UI/UX">UI/UX</option>
-                <option value="MERN Stack">MERN Stack</option>
-                <option value="Macine Learning">Machine Learning</option>
-                <option value="DSA">DSA</option>
-                <option value="Web Development">Web Development</option>
-                <option value="Python">Python</option>
-                <option value="Java">Java</option>
-                <option value="C++">C++</option>
-              </select>
-            </div>
+          {/* Heading */}
+          <h2 className="text-2xl font-semibold text-center">
+            Tell us more about the job you{" "}
+            <span className="underline">wish</span> to prepare for
+          </h2>
+          <p className="text-gray-400 text-center mt-2">
+            Add details about your job position, job description, and years of
+            experience so that we can help you practice with the best questions.
+          </p>
 
-            {/* Level Dropdown */}
-            <div className="flex flex-col items-start w-full">
-              <label htmlFor="level" className="text-sm text-gray-400 mb-1">
-                Choose Difficulty
-              </label>
-              <select
-                id="level"
-                className="bg-gray-800 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer w-full"
-                value={level}
-                onChange={(e) => setLevel(e.target.value)}
-              >
-                <option value="Beginner">Beginner</option>
-                <option value="Medium">Medium</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-            </div>
+          {/* Job Position */}
+          <label className="block text-lg font-medium mt-4">
+            Job Position / Job Role
+          </label>
+          <input
+            type="text"
+            value={jobRole}
+            className="w-full p-3 mt-1 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter a Job-Role"
+            onChange={(e) => setJobRole(e.target.value)}
+          />
+
+          {/* Job Description */}
+          <label className="block text-lg font-medium mt-4">
+            Job Description
+          </label>
+          <div className="relative">
+            <textarea
+              className="w-full p-3 mt-1 bg-gray-800 border border-gray-600 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter job description..."
+              maxLength={300}
+              value={jobDescription}
+              onChange={(e) => setJobDescription(e.target.value)}
+            />
+            <span className="absolute bottom-3 right-3 text-sm text-gray-400">
+              {jobDescription.length}/300
+            </span>
           </div>
 
-          {/* Start Course Button */}
-          <button
-            className="mt-4 px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-500 transition duration-300 w-full text-center"
-            onClick={handleclick}
-          >
-            Start Interview
-          </button>
+          {/* Years of Experience */}
+          <label className="block text-lg font-medium mt-4">
+            Years of Experience
+          </label>
+          <input
+            type="number"
+            min="0"
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+            className="w-full p-3 mt-1 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          {/* Generate Button */}
+          <div className="flex justify-center mt-6">
+            <button
+              className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full text-lg font-semibold flex items-center gap-2 transition transform hover:scale-105"
+              onClick={() => navigate("/difficulty")}
+            >
+              Generate Questions
+              <span className="text-2xl">↗</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

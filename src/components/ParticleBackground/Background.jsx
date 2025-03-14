@@ -59,13 +59,13 @@ const Background = () => {
 
       <div className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 space-y-6">
         {/* Hero Section */}
-        <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight">
-          Elevate Your <span className="text-[#38BDF8]">Interview</span> Skills
+        <h1 className="text-2xl md:text-7xl font-bold text-white leading-tight">
+          Ace Your Next <span className="text-[#38BDF8]">Interview</span> with
+          AI-Powered Mock Sessions
         </h1>
 
-        <p className="text-lg md:text-xl text-white max-w-3xl">
-          Unlock AI-powered guidance, real-time feedback, and expert-curated
-          resources to ace your next interview with confidence.
+        <p className="text-lg md:text-5xl text-gray-200 max-w-3xl">
+          Practice, Improve, Succeed.....
         </p>
 
         <button

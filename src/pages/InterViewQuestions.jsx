@@ -32,7 +32,7 @@ const InterViewQuestions = () => {
 
   return (
     <div className="bg-black w-screen min-h-screen text-white flex flex-col items-center relative py-10">
-      <Particles className="absolute inset-0" quantity={150} ease={80} color="#ffffff" refresh />
+      {/* <Particles className="absolute inset-0" quantity={150} ease={80} color="#ffffff" refresh /> */}
 
       <div className="fixed top-5 left-5 border border-white rounded-full p-3 hover:bg-white hover:text-black transition-all duration-200 cursor-pointer">
         <ArrowLeft className="w-6 h-6" onClick={() => window.history.back()} />

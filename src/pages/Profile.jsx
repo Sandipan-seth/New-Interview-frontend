@@ -9,13 +9,13 @@ const Profile = () => {
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center relative px-6 ">
       {/* Background Particles */}
-      <Particles
+      {/* <Particles
         className="absolute inset-0 h-full"
         quantity={150}
         ease={80}
         color="#ffffff"
         refresh
-      />
+      /> */}
 
       {/* Back Button */}
       <button
