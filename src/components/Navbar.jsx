@@ -60,21 +60,6 @@ const Navbar = ({ scrollToFeature }) => {
           className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
           onClick={(e) => {
             e.preventDefault();
-            const aboutSection = document.getElementById("about");
-            if (aboutSection) {
-              aboutSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-        >
-          <span className="mr-2">⚙️</span> About
-        </button>
-        <button className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700">
-          <span className="mr-2">💬</span> Docs
-        </button>
-        <button
-          className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
-          onClick={(e) => {
-            e.preventDefault();
             const featuresSection = document.getElementById("features");
             if (featuresSection) {
               featuresSection.scrollIntoView({ behavior: "smooth" });
@@ -83,9 +68,25 @@ const Navbar = ({ scrollToFeature }) => {
         >
           <span className="mr-2">📌</span> Features
         </button>
-        <button className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700">
-          <span className="mr-2">📄</span> Contact
+        <button
+          className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700"
+          onClick={(e) => {
+            e.preventDefault();
+            const aboutSection = document.getElementById("about");
+            if (aboutSection) {
+              aboutSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          <span className="mr-2">⚙️</span> About
         </button>
+        {/* <button className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700">
+          <span className="mr-2">💬</span> Docs
+        </button> */}
+
+        {/* <button className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg border border-gray-600 rounded-lg bg-gray-900 bg-opacity-50 transition duration-300 hover:bg-gray-700">
+          <span className="mr-2">📄</span> Contact
+        </button> */}
       </div>
 
       {/* avatar or login sign in */}

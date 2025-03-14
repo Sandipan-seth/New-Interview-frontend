@@ -7,10 +7,26 @@ export const UserProvider = ({ children }) => {
   const [auth, setAuth] = useState("login");
   const [userId, setUserId] = useState(12345);
   const [user, setUser] = useState(null);
-  
+
   const [course, setCourse] = useState("AI");
   const [level, setLevel] = useState("Medium");
-  const [questions , setQuestions] = useState([]);
-  let value = { auth, setAuth, userId, setUserId,course, setCourse, level, setLevel,user, setUser , questions , setQuestions };
+  const [questions, setQuestions] = useState([]);
+  const [difficulty, setDifficulty] = useState(1);
+  let value = {
+    auth,
+    setAuth,
+    userId,
+    setUserId,
+    course,
+    setCourse,
+    level,
+    setLevel,
+    user,
+    setUser,
+    questions,
+    setQuestions,
+    difficulty,
+    setDifficulty,
+  };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
